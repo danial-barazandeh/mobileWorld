@@ -33,27 +33,27 @@ class VendorPageController extends GetxController {
 
 
   fetchVendors() async {
-    isLoading(true);
-    vendors.clear();
-    try{
-      var temp = await BackendServices.fetchVendor(vendorID.value);
-      temp.forEach((element) {
-        vendors.add(element);
-      });
-      isLoading(false);
-      return temp;
-    }catch(e){
-      Get.snackbar(
-        myStrings.error,
-        myStrings.notVendorInfo,
-        icon: Icon(Icons.lock, color: Colors.white),
-        snackPosition: SnackPosition.BOTTOM,
-        colorText: Colors.white,
-        backgroundColor: myColors.coll.withAlpha(200),
-      );
-      isLoading(false);
-      return false;
-    }
+    // isLoading(true);
+    // vendors.clear();
+    // try{
+    //   var temp = await BackendServices.fetchVendor(vendorID.value);
+    //   temp.forEach((element) {
+    //     vendors.add(element);
+    //   });
+    //   isLoading(false);
+    //   return temp;
+    // }catch(e){
+    //   Get.snackbar(
+    //     myStrings.error,
+    //     myStrings.notVendorInfo,
+    //     icon: Icon(Icons.lock, color: Colors.white),
+    //     snackPosition: SnackPosition.BOTTOM,
+    //     colorText: Colors.white,
+    //     backgroundColor: myColors.coll.withAlpha(200),
+    //   );
+    //   isLoading(false);
+    //   return false;
+    // }
   }
 
 

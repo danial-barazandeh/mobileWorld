@@ -4,7 +4,10 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is an app for selling mobile spare parts. this app was made for a freelancing project in IRAQ that I developed and this repository is a translated DEMO version of that project for my portfolio.
+
+
+- jMob is a name of the app in local language ***
 
 A few resources to get you started if this is your first Flutter project:
 

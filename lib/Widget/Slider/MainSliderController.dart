@@ -23,7 +23,7 @@ class MainSliderController extends GetxController {
   }
 
   getSlidersImages() async {
-    imgList.value = await BackendServices.fetchSliders();
+    // imgList.value = await BackendServices.fetchSliders();
   }
 
 
