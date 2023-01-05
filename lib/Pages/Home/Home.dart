@@ -43,8 +43,20 @@ class Home extends GetView<HomeController> {
         backgroundColor: Colors.transparent,
         bottomNavigationBar: ButtomNavigation(),
         body: Stack(
+          alignment: Alignment.topRight,
           children: [
             myPerfectDrawer,
+            Container(
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.1,
+                  right: MediaQuery.of(context).size.height * 0.08),
+              height: 50,
+              width: 50,
+              child: IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () => myDrawerController.CloseDrawer(),
+              )
+            ),
             Obx(
               () => AnimatedContainer(
                 transform: Matrix4.translationValues(myDrawerController.xOffset.value, myDrawerController.yOffset.value * 1.5, 0)
@@ -96,7 +108,7 @@ class Home extends GetView<HomeController> {
                                   ),
                                   Expanded(
                                     child: Align(
-                                      alignment: Alignment.centerLeft,
+                                      alignment: Alignment.centerRight,
                                       child: IconButton(
                                         icon: Icon(Icons.search, color: myColors.textColor),
                                         onPressed: () => Get.to(() => SearchPage(), binding: SearchPageBinding()),

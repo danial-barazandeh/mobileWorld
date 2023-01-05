@@ -1,41 +1,70 @@
 {
   "project_info": {
-    "project_number": "1051416445541",
-    "project_id": "jmob-f7bcd",
-    "storage_bucket": "jmob-f7bcd.appspot.com"
+    "project_number": "136479320008",
+    "project_id": "jmob-84768",
+    "storage_bucket": "jmob-84768.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1051416445541:android:1de70aa0534e55d7f2bc8c",
+        "mobilesdk_app_id": "1:136479320008:android:df8bb002eb5c2b329a02fd",
         "android_client_info": {
           "package_name": "ir.brzdev.jmob"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1051416445541-ubbvhd2dickbrj6i8mbkjuq86frglikv.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "ir.brzdev.jmob",
-            "certificate_hash": "7defe2f84f67a3731d7e728c30e5bec2f75d9a60"
-          }
-        },
-        {
-          "client_id": "1051416445541-0o97h44jertf0c63be90etvvtepr7r7p.apps.googleusercontent.com",
+          "client_id": "136479320008-tjbirq64arpj0iloo7pgb6aj2uhpbogt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCDav_uDpLr8JwZIMY26lh-MdYXmDhqC7I"
+          "current_key": "AIzaSyDKbJyZKof--jMGaOzyboOOJ0ghJo3yn-c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1051416445541-0o97h44jertf0c63be90etvvtepr7r7p.apps.googleusercontent.com",
+              "client_id": "136479320008-tjbirq64arpj0iloo7pgb6aj2uhpbogt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136479320008:android:a6dcb67e9464ffbf9a02fd",
+        "android_client_info": {
+          "package_name": "ir.brzdev.mobileworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "136479320008-cobtein1lu9nqdikl4m537k6bpo132jo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ir.brzdev.mobileworld",
+            "certificate_hash": "b4b4b969681a7e87191dd943c9c9968c26b29200"
+          }
+        },
+        {
+          "client_id": "136479320008-tjbirq64arpj0iloo7pgb6aj2uhpbogt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKbJyZKof--jMGaOzyboOOJ0ghJo3yn-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "136479320008-tjbirq64arpj0iloo7pgb6aj2uhpbogt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

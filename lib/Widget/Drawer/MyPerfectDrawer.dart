@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jmob/Pages/About/About.dart';
@@ -11,8 +12,6 @@ import 'package:jmob/Pages/SignUpForm/SignUpFormBinding.dart';
 import 'package:jmob/Pages/SignUpForm/SignUpFormController.dart';
 import 'package:jmob/Services/MyColors.dart';
 import 'package:jmob/Services/MyStrings.dart';
-
-import 'package:restart_app/restart_app.dart';
 import 'MyDrawerController.dart';
 
 class MyPerfectDrawer extends GetView<MyDrawerController> {
@@ -29,13 +28,13 @@ class MyPerfectDrawer extends GetView<MyDrawerController> {
       color: myColors.primary,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Obx(
                 () => AnimatedContainer(
               duration: Duration(milliseconds: 250),
               height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: MediaQuery.of(context).size.width * 0.4,
               margin: EdgeInsets.only(top: 16, right: 0),
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -70,7 +69,7 @@ class MyPerfectDrawer extends GetView<MyDrawerController> {
                 () => AnimatedContainer(
               duration: Duration(milliseconds: 250),
               height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: MediaQuery.of(context).size.width * 0.4,
               margin: EdgeInsets.only(top: 8, right: 0),
               alignment: Alignment.centerRight,
               decoration: BoxDecoration(
@@ -114,7 +113,7 @@ class MyPerfectDrawer extends GetView<MyDrawerController> {
                 () => AnimatedContainer(
               duration: Duration(milliseconds: 250),
               height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: MediaQuery.of(context).size.width * 0.4,
               margin: EdgeInsets.only(top: 8, right: 0),
               alignment: Alignment.centerRight,
               decoration: BoxDecoration(
@@ -155,7 +154,7 @@ class MyPerfectDrawer extends GetView<MyDrawerController> {
                 () => AnimatedContainer(
               duration: Duration(milliseconds: 250),
               height: MediaQuery.of(context).size.height * 0.06,
-              width: MediaQuery.of(context).size.width * 0.6,
+              width: MediaQuery.of(context).size.width * 0.4,
               margin: EdgeInsets.only(top: 8, right: 0),
               alignment: Alignment.centerRight,
               decoration: BoxDecoration(
@@ -171,7 +170,7 @@ class MyPerfectDrawer extends GetView<MyDrawerController> {
 
                   var storage =  GetStorage("userStorage");
                   storage.erase();
-                  Restart.restartApp();
+                  Phoenix.rebirth(context);
 
                 },
                 child: ListTile(

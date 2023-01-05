@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:jmob/Model/User.dart';
@@ -154,9 +155,9 @@ class MyApp extends StatelessWidget {
 
       ],
       supportedLocales: [
-        Locale("fa", "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
+        Locale("en", "US"), // OR Locale('ar', 'AE') OR Other RTL locales
       ],
-      locale: Locale("fa", "IR"),
+      locale: Locale("en", "US"),
       // OR Locale('ar', 'AE') OR Other RTL locales,
       debugShowCheckedModeBanner: false,
       title: 'Jihani Mobile',
@@ -239,58 +240,60 @@ class _MyHomePageState extends State<MyHomePage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Color.fromRGBO(25, 77, 112, 1),
     ));
-    return Stack(
-      children: [
-        Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment(0.8, 0.0), // 10% of the width, so there are ten blinds.
-              colors: <Color>[Color.fromRGBO(25, 77, 112, 1), Color.fromRGBO(17, 48, 69, 1)], // repeats the gradient over the canvas
+    return Phoenix(
+      child: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment(0.8, 0.0), // 10% of the width, so there are ten blinds.
+                colors: <Color>[Color.fromRGBO(25, 77, 112, 1), Color.fromRGBO(17, 48, 69, 1)], // repeats the gradient over the canvas
+              ),
             ),
           ),
-        ),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent.withAlpha(0),
-            elevation: 0.0,
-          ),
-          body: SafeArea(
-            bottom: false,
-            top: false,
-            child: Align(
-              alignment: Alignment(0, 0),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 2,
-                        child: Image.asset(
-                          'images/Loading.png',
-                          scale: 3,
-                        )),
-                    // Text(
-                    //   "خوش آمدید",
-                    //   textAlign: TextAlign.center,
-                    //   style: TextStyle(
-                    //     color: Colors.white38,
-                    //     fontSize: 21,
-                    //   ),
-                    // ),
-                  ],
+          Scaffold(
+            backgroundColor: Colors.transparent,
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent.withAlpha(0),
+              elevation: 0.0,
+            ),
+            body: SafeArea(
+              bottom: false,
+              top: false,
+              child: Align(
+                alignment: Alignment(0, 0),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height / 2,
+                          child: Image.asset(
+                            'images/Loading.png',
+                            scale: 3,
+                          )),
+                      // Text(
+                      //   "خوش آمدید",
+                      //   textAlign: TextAlign.center,
+                      //   style: TextStyle(
+                      //     color: Colors.white38,
+                      //     fontSize: 21,
+                      //   ),
+                      // ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
