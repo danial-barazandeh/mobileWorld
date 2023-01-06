@@ -24,7 +24,7 @@ class MainSlider extends GetView<MainSliderController> {
 
       if (mainSliderController.imgList.length > 0)
         return Container(
-          height: MediaQuery.of(context).size.height*0.2,
+          height: MediaQuery.of(context).size.height*0.25,
             padding: EdgeInsets.only(left:8,right: 8),
             child: Swiper(
               outer:false,
@@ -35,7 +35,7 @@ class MainSlider extends GetView<MainSliderController> {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(16.0),
                   child: CachedNetworkImage(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     imageUrl: mainSliderController.imgList[index],
                   ),
                 );

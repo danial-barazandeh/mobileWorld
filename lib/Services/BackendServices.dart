@@ -380,6 +380,20 @@ class BackendServices {
     }
   }
 
+  static Future<List<String>> fetchSliders() async {
+    var imgList = <String>[];
+    var response = await client.get(
+      Uri.parse('$domainBase/api/sliders'),
+      headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8',},
+    );
 
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      var jsonArray = jsonDecode(response.body);
+      for(var json in jsonArray){
+        imgList.add(json["image"]);
+      }
+    }
+    return imgList;
+  }
 
 }

@@ -84,7 +84,7 @@ class SearchPage extends GetView<SearchPageController> {
                                       controller: searchController,
                                       autovalidateMode: AutovalidateMode.onUserInteraction,
                                       keyboardType: TextInputType.emailAddress,
-                                      textAlign: TextAlign.right,
+                                      textAlign: TextAlign.left,
                                       autofocus: true,
                                       style: TextStyle(color: Colors.black87),
                                       decoration: new InputDecoration(

@@ -46,17 +46,6 @@ class Home extends GetView<HomeController> {
           alignment: Alignment.topRight,
           children: [
             myPerfectDrawer,
-            Container(
-              margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.1,
-                  right: MediaQuery.of(context).size.height * 0.08),
-              height: 50,
-              width: 50,
-              child: IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.white),
-                onPressed: () => myDrawerController.CloseDrawer(),
-              )
-            ),
             Obx(
               () => AnimatedContainer(
                 transform: Matrix4.translationValues(myDrawerController.xOffset.value, myDrawerController.yOffset.value * 1.5, 0)
@@ -64,9 +53,9 @@ class Home extends GetView<HomeController> {
                 duration: Duration(milliseconds: 250),
                 decoration: BoxDecoration(boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
+                    color: myColors.textColor.withOpacity(0.15),
+                    spreadRadius: 7,
+                    blurRadius: 10,
                     offset: Offset(0, 3), // changes position of shadow
                   ),
                 ], color: myColors.backgroundColor, borderRadius: BorderRadius.circular(myDrawerController.isDrawerOpen.value ? 30 : 0)),
@@ -92,21 +81,27 @@ class Home extends GetView<HomeController> {
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
                                       myDrawerController.isDrawerOpen.value
-                                          ? IconButton(
-                                              icon: Icon(Icons.arrow_back, color: myColors.textColor),
-                                              onPressed: () => myDrawerController.CloseDrawer(),
-                                            )
+                                          ? Container(
+                                            width: MediaQuery.of(context).size.width,
+                                            alignment: Alignment.centerRight,
+                                            child: IconButton(
+                                                icon: Icon(Icons.arrow_forward, color: myColors.textColor),
+                                                onPressed: () => myDrawerController.CloseDrawer(),
+                                              ),
+                                          )
                                           : IconButton(
                                               icon: Icon(Icons.menu, color: myColors.textColor),
                                               onPressed: () => myDrawerController.OpenDrawer(context),
                                             ),
-                                      Text(
+                                      !myDrawerController.isDrawerOpen.value
+                                          ? Text(
                                         myStrings.home,
                                         style: TextStyle(color: myColors.textColor),
-                                      ),
+                                      ) : SizedBox(),
                                     ],
                                   ),
-                                  Expanded(
+                                  !myDrawerController.isDrawerOpen.value
+                                      ? Expanded(
                                     child: Align(
                                       alignment: Alignment.centerRight,
                                       child: IconButton(
@@ -114,7 +109,7 @@ class Home extends GetView<HomeController> {
                                         onPressed: () => Get.to(() => SearchPage(), binding: SearchPageBinding()),
                                       ),
                                     ),
-                                  ),
+                                  ) : SizedBox(),
                                 ],
                               ),
                             ],
@@ -169,7 +164,7 @@ class Home extends GetView<HomeController> {
                           }),
                           Container(
                               width: MediaQuery.of(context).size.width,
-                              alignment: Alignment.topRight,
+                              alignment: Alignment.topLeft,
                               child: TextButton(
                                 onPressed: () {},
                                 child: Text(

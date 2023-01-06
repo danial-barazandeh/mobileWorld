@@ -32,10 +32,10 @@ class ButtomNavigation extends GetView<BottomNavigationController> {
     BottomNavigationController controller = Get.find<BottomNavigationController>();
 
     var temp = <Widget>[
-      Icon(Icons.account_circle, size: 30,color: Colors.amber,),
-      Icon(Icons.home, size: 30,color: Colors.amber),
-      Icon(Icons.list, size: 30,color: Colors.amber),
-      Icon(Icons.search, size: 30,color: Colors.amber),
+      Icon(Icons.account_circle, size: 30,color: myColors.background,),
+      Icon(Icons.home, size: 30,color: myColors.background),
+      Icon(Icons.list, size: 30,color: myColors.background),
+      Icon(Icons.search, size: 30,color: myColors.background),
     ];
 
 
@@ -48,7 +48,7 @@ class ButtomNavigation extends GetView<BottomNavigationController> {
           items: temp,
           color: myColors.primary,
           buttonBackgroundColor: myColors.primary,
-          backgroundColor: myColors.primary,
+          backgroundColor: myColors.coll,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 200),
           onTap: (index) {
