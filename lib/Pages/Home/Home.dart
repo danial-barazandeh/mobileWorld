@@ -178,6 +178,7 @@ class Home extends GetView<HomeController> {
                               return Container(
                                 height: MediaQuery.of(context).size.height * 0.18,
                                 width: MediaQuery.of(context).size.width,
+                                padding: EdgeInsets.only(right: 8, left: 8),
                                 child: ListView.builder(
                                     itemCount: controller.postList.length,
                                     scrollDirection: Axis.horizontal,

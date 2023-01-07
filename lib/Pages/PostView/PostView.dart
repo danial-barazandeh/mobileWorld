@@ -103,7 +103,7 @@ class PostView extends GetView<PostViewController> {
                       onErrorBuilder: (context, element, error) => Text('$element error: $error'),
                       onLoadingBuilder: (context, element, loadingProgress) => CircularProgressIndicator(),
                       renderMode: RenderMode.column,
-                      textStyle: TextStyle(fontSize: 14),
+                      textStyle: TextStyle(fontSize: 14,color: myColors.textColor.withOpacity(0.7)),
                     ),
                   ),
                 ),
