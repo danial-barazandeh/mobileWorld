@@ -28,7 +28,7 @@ class ProductWidget extends StatelessWidget {
   const ProductWidget(this.product);
 
   String getPrice(String data){
-    var nf = new NumberFormat.currency(name: 'IRR',symbol: "").format(int.parse(data.toString()));
+    var nf = new NumberFormat.currency(name: 'EUR',symbol: "€").format(int.parse(data.toString()));
     return nf.toString();
   }
 
@@ -143,7 +143,7 @@ class ProductWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
 
 
@@ -164,7 +164,7 @@ class ProductWidget extends StatelessWidget {
 
 
                       Padding(
-                        padding: const EdgeInsets.only(left: 4.0),
+                        padding: const EdgeInsets.only(left: 8,right: 8),
                         child: SizedBox(
                           height:MediaQuery.of(context).size.height*0.04,
                           width:MediaQuery.of(context).size.width*0.12,
@@ -209,8 +209,8 @@ class ProductWidget extends StatelessWidget {
 
 
                             },
-                            child: Text("خرید",style: TextStyle(color: Colors.white, fontSize: 12)),
-                            style: TextButton.styleFrom(primary: Colors.white,backgroundColor: Colors.red),
+                            child: Text("Buy",style: TextStyle(color: Colors.white, fontSize: 12)),
+                            style: TextButton.styleFrom(primary: Colors.white,backgroundColor: myColors.coll),
                           ),
                         ),
                       ),
@@ -231,7 +231,7 @@ class ProductWidget extends StatelessWidget {
 
             Container(
               decoration: BoxDecoration(
-                color: Color(0xff113045),
+                color: myColors.primary,
                 borderRadius: BorderRadius.only(bottomRight: Radius.circular(8),bottomLeft: Radius.circular(8)),
               ),
               child: Padding(
@@ -241,7 +241,7 @@ class ProductWidget extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.store,color: Color(0xfffcc906),),
+                        Icon(Icons.store,color: myColors.background,),
                         SizedBox(width: 8,),
                         Text("shop name",style: TextStyle(color: Colors.white)),
                       ],

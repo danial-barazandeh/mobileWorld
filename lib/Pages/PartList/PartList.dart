@@ -35,7 +35,6 @@ class PartList extends GetView<PartListController> {
 
     return Scaffold(
         backgroundColor: myColors.background,
-        bottomNavigationBar: ButtomNavigation(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,6 +42,7 @@ class PartList extends GetView<PartListController> {
             Container(
               margin: EdgeInsets.only(top: 35),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
                     icon: Icon(Icons.arrow_back, color: myColors.textColor),
@@ -51,7 +51,7 @@ class PartList extends GetView<PartListController> {
                     },
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 8),
+                    padding: const EdgeInsets.only(right: 16),
                     child: Text(
                       partListController.selectedDevice.value.name ?? "",
                       style: TextStyle(color: myColors.textColor),

@@ -51,7 +51,7 @@ class PostView extends GetView<PostViewController> {
 
 
             flexibleSpace: FlexibleSpaceBar(
-              titlePadding: EdgeInsets.only(right:64,bottom: 12),
+              titlePadding: EdgeInsets.only(left:12,bottom: 12),
               // centerTitle: true,
               title: Text(controller.selectedPost.value.title),
 

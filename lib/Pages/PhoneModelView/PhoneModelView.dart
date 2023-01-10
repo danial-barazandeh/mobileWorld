@@ -24,9 +24,6 @@ class PhoneModelView extends GetView<PhoneModelViewController> {
   PhoneModelViewController phoneModelViewController = Get.find<PhoneModelViewController>();
 
 
-
-
-
   @override
   Widget build(BuildContext context) {
     MyColors myColors = new MyColors();
@@ -37,7 +34,6 @@ class PhoneModelView extends GetView<PhoneModelViewController> {
 
     return Scaffold(
         backgroundColor: myColors.background,
-        bottomNavigationBar:ButtomNavigation(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,6 +42,7 @@ class PhoneModelView extends GetView<PhoneModelViewController> {
             Container(
               margin: EdgeInsets.only(top:35),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
                     icon: Icon(Icons.arrow_back,
@@ -55,7 +52,7 @@ class PhoneModelView extends GetView<PhoneModelViewController> {
                     },
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right:8),
+                    padding: const EdgeInsets.only(right:16),
                     child: Text(
                       phoneModelViewController.selectedBrand.value.name??"",
                       style: TextStyle(color: myColors.textColor),
@@ -85,17 +82,27 @@ class PhoneModelView extends GetView<PhoneModelViewController> {
 
             SizedBox(height:4),
 
-            Card(
-              elevation:0,
-                color: myColors.primary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(250),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(myStrings.choseYourPhone,style: TextStyle(color: Colors.white),),
-                ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width*0.3,
+                    alignment: Alignment.center,
+                    child: Card(
+                      elevation:0,
+                        color: myColors.primary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(250),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(myStrings.choseYourPhone,style: TextStyle(color: Colors.white),),
+                        ),
+                    ),
+                  ),
+              ],
             ),
+
             SizedBox(height: 2,),
             Expanded(
                 child: Padding(
