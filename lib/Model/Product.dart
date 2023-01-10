@@ -5,6 +5,7 @@
 import 'dart:convert';
 
 import 'package:jmob/Model/User.dart';
+import 'package:jmob/Model/Vendor.dart';
 
 Product productFromJson(String str) => Product.fromJson(json.decode(str));
 
@@ -21,7 +22,8 @@ class Product {
     this.brand,
     this.productCategoryId,
     this.ownerId,
-    this.user
+    this.user,
+    this.vendor,
   });
 
   int id;
@@ -34,6 +36,7 @@ class Product {
   dynamic productCategoryId;
   dynamic ownerId;
   dynamic user;
+  dynamic vendor;
 
 
   factory Product.fromJson(Map<String, dynamic> json){
@@ -46,6 +49,14 @@ class Product {
       userTemp = "";
     }
 
+    var vendorTemp;
+    try{
+      vendorTemp = new Vendor.fromJson(json["vendor"]);
+    }catch(e){
+      vendorTemp = "";
+    }
+
+
     return Product(
         id: json["id"],
         name: json["name"].toString(),
@@ -56,7 +67,8 @@ class Product {
         brand: json["brand"].toString(),
         ownerId: json["owner_id"].toString(),
         productCategoryId: json["product_category_id"].toString(),
-        user: userTemp
+        user: userTemp,
+        vendor: vendorTemp,
     );
   }
 
@@ -69,6 +81,7 @@ class Product {
     "sale_price": salePrice,
     "productCategoryId": productCategoryId,
     "ownerId": ownerId,
-    "user": user
+    "user": user,
+    "vendor": vendor,
   };
 }

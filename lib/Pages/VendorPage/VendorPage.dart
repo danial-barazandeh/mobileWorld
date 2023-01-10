@@ -34,263 +34,235 @@ class VendorPage extends GetView<VendorPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: myColors.background,
-        bottomNavigationBar: ButtomNavigation(),
-        body: Stack(
-          children: [
-            myPerfectDrawer,
-            Obx(
-              () => AnimatedContainer(
-                transform: Matrix4.translationValues(
-                    myDrawerController.xOffset.value, myDrawerController.yOffset.value * 1.5, 0)
-                  ..scale(myDrawerController.scaleFactor.value),
-                duration: Duration(milliseconds: 250),
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                    color: myColors.backgroundColor,
-                    borderRadius: BorderRadius.circular(myDrawerController.isDrawerOpen.value ? 30 : 0)),
-                child: ListView(
-                  padding: EdgeInsets.zero,
+        body: Obx(
+          () => AnimatedContainer(
+            transform: Matrix4.translationValues(
+                myDrawerController.xOffset.value, myDrawerController.yOffset.value * 1.5, 0)
+              ..scale(myDrawerController.scaleFactor.value),
+            duration: Duration(milliseconds: 250),
+            decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+                color: myColors.backgroundColor,
+                borderRadius: BorderRadius.circular(myDrawerController.isDrawerOpen.value ? 30 : 0)),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                SizedBox(
+                  height: myDrawerController.isDrawerOpen.value ? 0 : 30,
+                ),
+                Stack(
                   children: [
-                    SizedBox(
-                      height: myDrawerController.isDrawerOpen.value ? 0 : 30,
-                    ),
-                    Stack(
-                      children: [
-                        Obx(() {
-                          if (vendorPageController.isLoading.value)
-                            return Container(
-                              height: MediaQuery.of(context).size.height - 200,
-                              width: MediaQuery.of(context).size.width,
-                              alignment: Alignment.center,
-                              child: CircularProgressIndicator(
-                                color: myColors.coll,
+                    Obx(() {
+                        return Container(
+                          height: MediaQuery.of(context).size.height,
+                          width: MediaQuery.of(context).size.width,
+                          alignment: Alignment.topCenter,
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.vertical(
+                                    bottom: Radius.circular(16),
+                                    top: Radius.circular(myDrawerController.isDrawerOpen.value ? 16 : 0)),
+                                child: Image.network(
+                                  vendorPageController.vendor.value.image,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height * 0.2,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            );
-                          else
-                            return Container(
-                              height: MediaQuery.of(context).size.height,
-                              width: MediaQuery.of(context).size.width,
-                              alignment: Alignment.topCenter,
-                              child: Stack(
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.vertical(
-                                        bottom: Radius.circular(16),
-                                        top: Radius.circular(myDrawerController.isDrawerOpen.value ? 16 : 0)),
-                                    child: Image.network(
-                                      vendorPageController.vendors.first.banner,
-                                      width: MediaQuery.of(context).size.width,
-                                      height: MediaQuery.of(context).size.height * 0.2,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        top: MediaQuery.of(context).size.height * 0.15, left: 16, right: 16),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(16)),
-                                      child: Container(
-                                        color: Colors.white,
-                                        width: MediaQuery.of(context).size.width,
-                                        height: MediaQuery.of(context).size.height * 0.5,
-                                        alignment: Alignment.topCenter,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(16),
-                                          child: Column(
+                              Container(
+                                margin: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height * 0.15, left: 16, right: 16),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                                  child: Container(
+                                    color: Colors.white,
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height * 0.6,
+                                    alignment: Alignment.topCenter,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(16),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                              vendorPageController.vendor.value.name,
+                                            style: TextStyle(fontWeight: FontWeight.w900,fontSize: 24),
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context).size.height*0.1,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
+                                              Icon(Icons.phone),
                                               SizedBox(
-                                                height: MediaQuery.of(context).size.height * 0.05,
+                                                width: 10,
                                               ),
-                                              Text(vendorPageController.vendors.first.storeName),
+                                              Text(myStrings.phone +
+                                                  " : " +
+                                                  vendorPageController.vendor.value.phone)
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(Icons.add_location_rounded),
                                               SizedBox(
-                                                height: 10,
+                                                width: 10,
                                               ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Icon(Icons.phone),
-                                                  SizedBox(
-                                                    width: 10,
+                                              Text(myStrings.city +
+                                                  " : " +
+                                                  vendorPageController.vendor.value.city)
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(Icons.add_business),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(myStrings.address +
+                                                  " : " +
+                                                  vendorPageController.vendor.value.address)
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Text(myStrings.storeRating),
+                                              IgnorePointer(
+                                                child: RatingBar.builder(
+                                                  initialRating: double.parse(
+                                                      "4.0"),
+                                                  minRating: 5,
+                                                  direction: Axis.horizontal,
+                                                  allowHalfRating: true,
+                                                  itemCount: 5,
+                                                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                                  itemBuilder: (context, _) => Icon(
+                                                    Icons.star,
+                                                    color: Colors.amber,
                                                   ),
-                                                  Text(myStrings.phone +
-                                                      " : " +
-                                                      vendorPageController.vendors.first.phone)
-                                                ],
+                                                  onRatingUpdate: (rating) {
+                                                    print(rating);
+                                                  },
+                                                ),
                                               ),
-                                              SizedBox(
-                                                height: 10,
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context).size.width,
+                                            child: Text(
+                                              myStrings.rateCount +
+                                                  " : " +
+                                                  "4",
+                                              textAlign: TextAlign.right,
+                                            ),
+                                          ),
+
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+
+                                          if(true)
+
+
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Card(
+                                              color: myColors.coll,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(16),
                                               ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.start,
+                                              child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
-                                                  Icon(Icons.add_location_rounded),
                                                   SizedBox(
-                                                    width: 10,
+                                                    height: 10,
                                                   ),
-                                                  Text(myStrings.city +
-                                                      " : " +
-                                                      vendorPageController.vendors.first.address.city)
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                children: [
-                                                  Icon(Icons.add_business),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(myStrings.address +
-                                                      " : " +
-                                                      vendorPageController.vendors.first.address.street1)
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                children: [
-                                                  Text(myStrings.storeRating),
-                                                  IgnorePointer(
-                                                    child: RatingBar.builder(
-                                                      initialRating: double.parse(
-                                                          vendorPageController.vendors.first.rating.rating),
-                                                      minRating: 5,
-                                                      direction: Axis.horizontal,
-                                                      allowHalfRating: true,
-                                                      itemCount: 5,
-                                                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                                                      itemBuilder: (context, _) => Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
+                                                  Container(
+                                                    width: MediaQuery.of(context).size.width,
+                                                    child: Text(
+                                                      myStrings.featuredShop,
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        color: Colors.white
                                                       ),
-                                                      onRatingUpdate: (rating) {
-                                                        print(rating);
-                                                      },
+                                                    ),
+                                                  ),
+                                                  IgnorePointer(
+                                                    child: Checkbox(
+                                                      checkColor: Colors.white,
+                                                      activeColor: myColors.coll,
+                                                      onChanged: (value) {
+                                                      }, value: true,
                                                     ),
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Container(
-                                                width: MediaQuery.of(context).size.width,
-                                                child: Text(
-                                                  myStrings.rateCount +
-                                                      " : " +
-                                                      vendorPageController.vendors.first.rating.count.toString(),
-                                                  textAlign: TextAlign.right,
-                                                ),
-                                              ),
-
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-
-                                              if(vendorPageController.vendors.first.featured)
-
-
-                                              Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                child: Card(
-                                                  color: myColors.coll,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(16),
-                                                  ),
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: [
-                                                      SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Container(
-                                                        width: MediaQuery.of(context).size.width,
-                                                        child: Text(
-                                                          myStrings.featuredShop,
-                                                          textAlign: TextAlign.center,
-                                                          style: TextStyle(
-                                                            color: Colors.white
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      IgnorePointer(
-                                                        child: Checkbox(
-                                                          checkColor: Colors.white,
-                                                          activeColor: myColors.coll,
-                                                          onChanged: (value) {
-                                                          }, value: true,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-
-                                            ],
+                                            ),
                                           ),
-                                        ),
+
+                                        ],
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        top: MediaQuery.of(context).size.height * 0.1, left: 16, right: 16),
-                                    alignment: Alignment.topCenter,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(Radius.circular(250)),
-                                      child: Image.network(
-                                        vendorPageController.vendors.first.gravatar,
-                                        height: MediaQuery.of(context).size.height * 0.1,
-                                        width: MediaQuery.of(context).size.height * 0.1,
-                                      ),
-                                    ),
-                                  )
-                                ],
+                                ),
                               ),
-                            );
-                        }),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            myDrawerController.isDrawerOpen.value
-                                ? IconButton(
-                                    icon: Icon(Icons.arrow_back, color: Colors.white),
-                                    onPressed: () => myDrawerController.CloseDrawer(),
-                                  )
-                                : IconButton(
-                                    icon: Icon(Icons.menu, color: Colors.white),
-                                    onPressed: () => myDrawerController.OpenDrawer(context),
-                                  ),
-                            Text(
-                              myStrings.shop,
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
+                            ],
+                          ),
+                        );
+                    }),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        myDrawerController.isDrawerOpen.value
+                            ? IconButton(
+                                icon: Icon(Icons.arrow_back, color: Colors.white),
+                                onPressed: () => myDrawerController.CloseDrawer(),
+                              )
+                            : IconButton(
+                                icon: Icon(Icons.menu, color: Colors.white),
+                                onPressed: () => myDrawerController.OpenDrawer(context),
+                              ),
+                        Text(
+                          myStrings.shop,
+                          style: TextStyle(color: Colors.white),
                         ),
                       ],
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ));
   }
 }

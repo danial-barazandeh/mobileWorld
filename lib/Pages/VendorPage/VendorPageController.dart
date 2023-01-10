@@ -22,7 +22,7 @@ class VendorPageController extends GetxController {
   var isLoading = true.obs;
   var vendorID = 0.obs;
 
-  var vendors = <Vendor>[].obs;
+  var vendor = Vendor(id: '').obs;
   MyStrings myStrings = new MyStrings();
   MyColors myColors = new MyColors();
   @override

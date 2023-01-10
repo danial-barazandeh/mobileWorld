@@ -239,12 +239,20 @@ class ProductWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Icon(Icons.store,color: myColors.background,),
-                        SizedBox(width: 8,),
-                        Text("shop name",style: TextStyle(color: Colors.white)),
-                      ],
+                    GestureDetector(
+                      child: Row(
+                        children: [
+                          Icon(Icons.store,color: myColors.background,),
+                          SizedBox(width: 8,),
+                          Text(product.vendor.name,style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                      onTap: (){
+                        print("sssssssssssss");
+                        VendorPageController vendorPageController = Get.find<VendorPageController>();
+                        vendorPageController.vendor.value = product.vendor;
+                        Get.to(VendorPage());
+                      },
                     ),
 
 
