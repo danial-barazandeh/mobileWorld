@@ -1,19 +1,11 @@
-# jmob
+#Mobile world
+#####This is a multi-vendor open-source app made by flutter. Keep in mind that this app works with my custom build API. Of course, the back-end is also open-source. The app needs more development time, but I'm working on it. I built this app to practice flutter. But if it could be helpful for you, feel free to do whatever you like with it.
 
-A new Flutter project.
+### Important features
 
-## Getting Started
-
-This is an app for selling mobile spare parts. this app was made for a freelancing project in IRAQ that I developed and this repository is a translated DEMO version of that project for my portfolio.
-
-
-- jMob is a name of the app in local language ***
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- GetX state management.
+- Visually appealing UI.
+- Multi-Vendor functionality.
+- Firebase SMS authentication.
+- JWT token authentication.
+- Active development.
