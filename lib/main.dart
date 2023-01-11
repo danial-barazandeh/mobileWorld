@@ -233,25 +233,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // Timer(Duration(seconds: 5),()=>Get.off(() => Home(), binding: HomeBinding()));
   }
-
+  MyColors myColors = Get.find<MyColors>();
   @override
   Widget build(BuildContext context) {
     init();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Color.fromRGBO(25, 77, 112, 1),
+      statusBarColor: myColors.primary,
     ));
     return Phoenix(
       child: Stack(
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment(0.8, 0.0), // 10% of the width, so there are ten blinds.
-                colors: <Color>[Color.fromRGBO(25, 77, 112, 1), Color.fromRGBO(17, 48, 69, 1)], // repeats the gradient over the canvas
-              ),
-            ),
+            color: myColors.primary,
           ),
           Scaffold(
             backgroundColor: Colors.transparent,
