@@ -53,7 +53,8 @@ dependencies:
   firebase_auth: ^4.1.1
   flutter_phoenix: ^1.0.0
   change_app_package_name: ^1.1.0
-
+  flutter_map: ^3.1.0
+  latlong2: ^0.8.1
 
   woocommerce:
     path: ./plugins/woocommerce

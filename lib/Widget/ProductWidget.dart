@@ -229,45 +229,33 @@ class ProductWidget extends StatelessWidget {
 
 
 
-            Container(
-              decoration: BoxDecoration(
-                color: myColors.primary,
-                borderRadius: BorderRadius.only(bottomRight: Radius.circular(8),bottomLeft: Radius.circular(8)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      child: Row(
+            GestureDetector(
+              onTap: (){
+                print("sssssssssssss");
+                VendorPageController vendorPageController = Get.find<VendorPageController>();
+                vendorPageController.vendor.value = product.vendor;
+                Get.to(VendorPage());
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: myColors.primary,
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(8),bottomLeft: Radius.circular(8)),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         children: [
                           Icon(Icons.store,color: myColors.background,),
                           SizedBox(width: 8,),
                           Text(product.vendor.name,style: TextStyle(color: Colors.white)),
                         ],
                       ),
-                      onTap: (){
-                        print("sssssssssssss");
-                        VendorPageController vendorPageController = Get.find<VendorPageController>();
-                        vendorPageController.vendor.value = product.vendor;
-                        Get.to(VendorPage());
-                      },
-                    ),
 
-
-
-                    // if(product.storeFeatured == true)
-                    //   Row(
-                    //     children: [
-                    //       Icon(Icons.check_circle_outlined,color: Color(0xff04eb84)),
-                    //       SizedBox(width: 8,),
-                    //       Text(myStrings.verifiedStore,style: TextStyle(color: Colors.white)),
-                    //     ],
-                    //   )
-
-
-                  ],
+                    ],
+                  ),
                 ),
               ),
             )
