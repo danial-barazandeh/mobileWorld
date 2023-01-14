@@ -58,7 +58,7 @@ class SignUpFormController extends GetxController {
               content: Container(
                 height: 250,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
 
                     Flexible(
@@ -67,6 +67,9 @@ class SignUpFormController extends GetxController {
                         maxLines: 4,
                         softWrap: true,),
                     ),
+
+                    SizedBox(height: 100,),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -84,7 +87,7 @@ class SignUpFormController extends GetxController {
                             width: 100,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(myStrings.nah,style: TextStyle(color: Colors.white),),
+                              child: Text(myStrings.nah,style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.w900),),
                             ),
                           ),
                           onPressed: () {
@@ -107,7 +110,7 @@ class SignUpFormController extends GetxController {
                             alignment: Alignment.center,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(myStrings.login+" / "+myStrings.signUp,style: TextStyle(color: Colors.white),),
+                              child: Text(myStrings.login+" / "+myStrings.signUp,style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.w900),),
                             ),
                           ),
                           onPressed: (){
@@ -146,12 +149,12 @@ class SignUpFormController extends GetxController {
       familyName.value = user.familyName;
       print("email length: "+email.value.length.toString());
       print("user is loged: " + user.phone);
-      nameController.value.text = user.name.toString().contains("null")?"ثبت نشده":user.name;
-      familyNameController.value.text = user.familyName.toString().contains("null")?"ثبت نشده":user.familyName;
-      emailController.value.text = user.email.toString().contains("null")?"ثبت نشده":user.email;
-      countryController.value.text = user.country.toString().contains("null")?"ثبت نشده":user.country;
-      cityController.value.text = user.city.toString().contains("null")?"ثبت نشده":user.city;
-      addressController.value.text = user.address.toString().contains("null")?"ثبت نشده":user.address;
+      nameController.value.text = user.name.toString().contains("null")?"":user.name;
+      familyNameController.value.text = user.familyName.toString().contains("null")?"":user.familyName;
+      emailController.value.text = user.email.toString().contains("null")?"":user.email;
+      countryController.value.text = user.country.toString().contains("null")?"":user.country;
+      cityController.value.text = user.city.toString().contains("null")?"":user.city;
+      addressController.value.text = user.address.toString().contains("null")?"":user.address;
     }else{
       print("user Logging is failed");
     }

@@ -50,34 +50,7 @@ class ProductWidget extends StatelessWidget {
       imageCheck = "";
     }
 
-    return GestureDetector(
-      onTap: () async {
-
-        // print("*************************");
-        // print(product.store);
-        // print("*************************");
-
-        // VendorPageController vendorPageController = Get.find<VendorPageController>();
-        // vendorPageController.vendorID.value = product.store??0;
-        // var isVendorOk = await vendorPageController.fetchVendors();
-        // if(isVendorOk == false){
-        //   MyDrawerController myDrawerController = Get.find<MyDrawerController>();
-        //   myDrawerController.selectHome();
-        //   // Get.to(() => Home(), binding: HomeBinding());
-        //   Get.snackbar(
-        //     myStrings.error,
-        //     myStrings.notVendorInfo,
-        //     icon: Icon(Icons.lock, color: Colors.white),
-        //     snackPosition: SnackPosition.BOTTOM,
-        //     colorText: Colors.white,
-        //     backgroundColor: myColors.coll.withAlpha(200),
-        //   );
-        // }else{
-        //   Get.to(() => VendorPage());
-        //   // vendorPageController.fetchVendors();
-        // }
-
-      },
+    return Container(
       child: Card(
         color: Color(0xffeaf2ff),
         shape: RoundedRectangleBorder(

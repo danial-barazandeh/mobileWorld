@@ -28,6 +28,7 @@ import 'PartListController.dart';
 class PartList extends GetView<PartListController> {
   PartListController partListController = Get.find<PartListController>();
   bool isListUsed = false;
+
   @override
   Widget build(BuildContext context) {
     MyColors myColors = new MyColors();
@@ -86,7 +87,7 @@ class PartList extends GetView<PartListController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(myStrings.models,textAlign: TextAlign.center),
+                    Text(myStrings.models, textAlign: TextAlign.center),
                     Container(
                       alignment: Alignment.center,
                       width: MediaQuery.of(context).size.width * 0.4,
@@ -145,7 +146,6 @@ class PartList extends GetView<PartListController> {
             SizedBox(
               height: 8,
             ),
-
             Obx(() {
               return Expanded(
                 child: Column(
@@ -191,48 +191,38 @@ class PartList extends GetView<PartListController> {
                             );
                           }),
                     ),
-
                     Obx(
-                      ()=> Expanded(
+                      () => Expanded(
                         child: Container(
-                          color:Colors.white,
+                          color: Colors.white,
                           child: Theme(
                             data: Theme.of(context).copyWith(colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white.withAlpha(0))),
                             child: ListView.builder(
-                                  shrinkWrap: true,
-                                  padding: EdgeInsets.all(0),
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: controller.productList.length,
-                                  itemBuilder: (context, index) {
+                                shrinkWrap: true,
+                                padding: EdgeInsets.all(0),
+                                scrollDirection: Axis.vertical,
+                                itemCount: controller.productList.length,
+                                itemBuilder: (context, index) {
+                                  try {
+                                      return Container(
+                                          margin: EdgeInsets.only(top: 8, left: 12, right: 12),
+                                          child: ProductWidgetMultilevel(controller.productGroupBy(controller.activatedTab.value).values.toList()[index]));
+                                  } catch (e) {
+                                    return SizedBox();
+                                  }
 
-                                    try{
-                                      var temp = controller.productGroupBy(controller.activatedTab.value).values.toList()[index];
-                                      if(temp.length <= 1)
-                                        return ProductWidget(controller.productList[index]);
-                                      else
-                                        return Container(
-                                          margin: EdgeInsets.only(top:8,left: 8,right: 8),
-                                            child: ProductWidgetMultilevel(controller.productGroupBy(controller.activatedTab.value).values.toList()[index])
-                                        );
-                                    }catch(e){
-                                      return SizedBox();
-                                    }
-
-                                    // if(controller.listProductList[index].length <= 1)
-                                    //   if(controller.listProductList[index].first.productCategoryId.toString() == controller.productCategoryList[controller.activatedTab.value].id.toString())
-                                    //     return ProductWidget(controller.listProductList[index].first);
-                                    //   else
-                                    //     return SizedBox();
-                                    // else
-                                    //   return ProductWidgetMultilevel(controller.listProductList[index]);
-
-                                  }),
+                                  // if(controller.listProductList[index].length <= 1)
+                                  //   if(controller.listProductList[index].first.productCategoryId.toString() == controller.productCategoryList[controller.activatedTab.value].id.toString())
+                                  //     return ProductWidget(controller.listProductList[index].first);
+                                  //   else
+                                  //     return SizedBox();
+                                  // else
+                                  //   return ProductWidgetMultilevel(controller.listProductList[index]);
+                                }),
                           ),
                         ),
                       ),
                     ),
-
-
                   ],
                 ),
               );

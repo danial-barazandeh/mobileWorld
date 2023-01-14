@@ -60,7 +60,7 @@ class PartListController extends GetxController{
   productGroupBy(int index){
 
     var tempList  =  allProductList.where((p0) => p0.productCategoryId.toString() == productCategoryList[index].id.toString()).toList();
-    var tempList2 = tempList.groupListsBy((element) => element.ownerId);
+    var tempList2 = tempList.groupListsBy((element) => element.vendor.id);
     return tempList2;
   }
   

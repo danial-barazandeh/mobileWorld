@@ -1,24 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
 import 'package:jmob/Model/Product.dart';
-import 'package:jmob/Pages/Home/Home.dart';
-import 'package:jmob/Pages/Home/HomeBinding.dart';
-import 'package:jmob/Pages/VendorPage/VendorPage.dart';
-import 'package:jmob/Pages/VendorPage/VendorPageBinding.dart';
 import 'package:jmob/Pages/VendorPage/VendorPageController.dart';
 import 'package:jmob/Services/MyColors.dart';
 import 'package:jmob/Services/MyStrings.dart';
-import 'package:woocommerce/models/product_category.dart';
-import 'package:woocommerce/models/products.dart';
-
 import '../Pages/OrdersView/OrdersViewController.dart';
+import '../Pages/VendorPage/VendorPage.dart';
 import '../Services/BackendServices.dart';
-import 'Drawer/MyDrawerController.dart';
 
 
 class ProductWidgetMultilevel extends StatelessWidget {
@@ -26,28 +16,15 @@ class ProductWidgetMultilevel extends StatelessWidget {
   const ProductWidgetMultilevel(this.products);
 
   String getPrice(String data){
-    var nf = new NumberFormat.currency(name: 'IRR',symbol: "").format(int.parse(data.toString()));
+    var nf = new NumberFormat.currency(name: 'EUR',symbol: "€").format(int.parse(data.toString()));
     return nf.toString();
   }
 
   @override
   Widget build(BuildContext context) {
 
-    // print("/////////////////");
-    // print(product.storeFeatured);
-    // print("/////////////////");
-
-
     MyStrings myStrings = Get.find<MyStrings>();
     MyColors myColors = new MyColors();
-    String imageCheck = "";
-
-
-    // try {
-    //   imageCheck = product.image.toString();
-    // }catch (e) {
-    //   imageCheck = "";
-    // }
 
     return Container(
       decoration: new BoxDecoration(
@@ -154,7 +131,7 @@ class ProductWidgetMultilevel extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
 
 
@@ -174,7 +151,7 @@ class ProductWidgetMultilevel extends StatelessWidget {
 
 
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 4.0),
+                                    padding: const EdgeInsets.only(left: 8,right: 8),
                                     child: SizedBox(
                                       height:MediaQuery.of(context).size.height*0.04,
                                       width:MediaQuery.of(context).size.width*0.12,
@@ -222,8 +199,8 @@ class ProductWidgetMultilevel extends StatelessWidget {
 
 
                                         },
-                                        child: Text("خرید",style: TextStyle(color: Colors.white, fontSize: 12)),
-                                        style: TextButton.styleFrom(primary: Colors.white,backgroundColor: Colors.red),
+                                        child: Text("Buy",style: TextStyle(color: Colors.white, fontSize: 12)),
+                                        style: TextButton.styleFrom(primary: Colors.white,backgroundColor: myColors.coll),
                                       ),
                                     ),
                                   ),
@@ -255,39 +232,33 @@ class ProductWidgetMultilevel extends StatelessWidget {
 
 
 
-          Container(
-            decoration: BoxDecoration(
-              color: Color(0xff113045),
-              borderRadius: BorderRadius.only(bottomRight: Radius.circular(8),bottomLeft: Radius.circular(8)),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.store,color: Color(0xfffcc906),),
-                      SizedBox(width: 8,),
+          GestureDetector(
+            onTap: (){
+              print("sssssssssssss");
+              VendorPageController vendorPageController = Get.find<VendorPageController>();
+              vendorPageController.vendor.value = products[0].vendor;
+              Get.to(VendorPage());
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: myColors.primary,
+                borderRadius: BorderRadius.only(bottomRight: Radius.circular(8),bottomLeft: Radius.circular(8)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.store,color: myColors.background,),
+                        SizedBox(width: 8,),
+                        Text(products[0].vendor.name,style: TextStyle(color: Colors.white)),
+                      ],
+                    ),
 
-                      Text(products.first.user.toString(),style: TextStyle(color: Colors.white)),
-
-                    ],
-                  ),
-
-
-
-                  // if(product.storeFeatured == true)
-                  //   Row(
-                  //     children: [
-                  //       Icon(Icons.check_circle_outlined,color: Color(0xff04eb84)),
-                  //       SizedBox(width: 8,),
-                  //       Text(myStrings.verifiedStore,style: TextStyle(color: Colors.white)),
-                  //     ],
-                  //   )
-
-
-                ],
+                  ],
+                ),
               ),
             ),
           )

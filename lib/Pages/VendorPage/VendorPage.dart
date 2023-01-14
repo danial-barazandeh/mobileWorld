@@ -82,7 +82,7 @@ class VendorPage extends GetView<VendorPageController> {
                                       style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24),
                                     ),
                                     SizedBox(
-                                      height: MediaQuery.of(context).size.height * 0.1,
+                                      height: MediaQuery.of(context).size.height * 0.05,
                                     ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
@@ -121,6 +121,21 @@ class VendorPage extends GetView<VendorPageController> {
                                           width: 10,
                                         ),
                                         Text(myStrings.address + " : " + vendorPageController.vendor.value.address)
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.email),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(myStrings.emailAddress + " : " + vendorPageController.vendor.value.email)
                                       ],
                                     ),
                                     SizedBox(

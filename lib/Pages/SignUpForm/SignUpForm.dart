@@ -12,6 +12,8 @@ import 'package:jmob/Widget/Drawer/MyPerfectDrawer.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
+import '../SearchPage/SearchPage.dart';
+import '../SearchPage/SearchPageBinding.dart';
 import 'SignUpFormController.dart';
 
 class SignUpForm extends GetView<SignUpFormController> {
@@ -51,21 +53,45 @@ class SignUpForm extends GetView<SignUpFormController> {
                     SizedBox(
                       height: myDrawerController.isDrawerOpen.value ? 10 : 30,
                     ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    Stack(
                       children: [
-                        myDrawerController.isDrawerOpen.value
-                            ? IconButton(
-                                icon: Icon(Icons.arrow_back, color: myColors.textColor),
-                                onPressed: () => myDrawerController.CloseDrawer(),
-                              )
-                            : IconButton(
-                                icon: Icon(Icons.menu, color: myColors.textColor),
-                                onPressed: () => myDrawerController.OpenDrawer(context),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                myDrawerController.isDrawerOpen.value
+                                    ? Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  alignment: Alignment.centerRight,
+                                  child: IconButton(
+                                    icon: Icon(Icons.arrow_forward, color: myColors.textColor),
+                                    onPressed: () => myDrawerController.CloseDrawer(),
+                                  ),
+                                )
+                                    : IconButton(
+                                  icon: Icon(Icons.menu, color: myColors.textColor),
+                                  onPressed: () => myDrawerController.OpenDrawer(context),
+                                ),
+                                !myDrawerController.isDrawerOpen.value
+                                    ? Text(
+                                  myStrings.editAccount,
+                                  style: TextStyle(color: myColors.textColor),
+                                ) : SizedBox(),
+                              ],
+                            ),
+                            !myDrawerController.isDrawerOpen.value
+                                ? Expanded(
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: IconButton(
+                                  icon: Icon(Icons.search, color: myColors.textColor),
+                                  onPressed: () => Get.to(() => SearchPage(), binding: SearchPageBinding()),
+                                ),
                               ),
-                        Text(
-                          myStrings.editAccount,
-                          style: TextStyle(color: myColors.textColor),
+                            ) : SizedBox(),
+                          ],
                         ),
                       ],
                     ),
@@ -107,7 +133,6 @@ class SignUpForm extends GetView<SignUpFormController> {
                                             }
                                           },
                                           keyboardType: TextInputType.text,
-                                          textAlign: TextAlign.right,
                                           style: TextStyle(color: Colors.black87),
                                           decoration: new InputDecoration(
                                             errorStyle: TextStyle(color: Colors.black87),
@@ -134,7 +159,6 @@ class SignUpForm extends GetView<SignUpFormController> {
                                             }
                                           },
                                           keyboardType: TextInputType.text,
-                                          textAlign: TextAlign.right,
                                           style: TextStyle(color: Colors.black87),
                                           decoration: new InputDecoration(
                                             errorStyle: TextStyle(color: Colors.black87),
@@ -189,7 +213,6 @@ class SignUpForm extends GetView<SignUpFormController> {
                                             }
                                           },
                                           keyboardType: TextInputType.emailAddress,
-                                          textAlign: TextAlign.right,
                                           style: TextStyle(color: Colors.black87),
                                           decoration: new InputDecoration(
                                             errorStyle: TextStyle(color: Colors.black87),
@@ -209,7 +232,7 @@ class SignUpForm extends GetView<SignUpFormController> {
                                       ),
 
                                       Directionality(
-                                        textDirection: TextDirection.rtl,
+                                        textDirection: TextDirection.ltr,
                                         child: DropdownButton<String>(
                                           value: signUpFormController.country.value,
                                           isExpanded: true,
@@ -501,13 +524,12 @@ class SignUpForm extends GetView<SignUpFormController> {
 
                                           },
                                           keyboardType: TextInputType.text,
-                                          textAlign: TextAlign.right,
                                           style: TextStyle(color: Colors.black87),
                                           decoration: new InputDecoration(
                                             errorStyle: TextStyle(color: Colors.black87),
                                             errorBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black87)),
                                             focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black87)),
-                                            hintText: myStrings.emailAddress,
+                                            hintText: myStrings.city,
                                             labelStyle: TextStyle(color: Colors.black87),
                                           )),
 
@@ -527,7 +549,6 @@ class SignUpForm extends GetView<SignUpFormController> {
 
                                           },
                                           keyboardType: TextInputType.text,
-                                          textAlign: TextAlign.right,
                                           style: TextStyle(color: Colors.black87),
                                           decoration: new InputDecoration(
                                             border: InputBorder.none,
@@ -611,13 +632,13 @@ class SignUpForm extends GetView<SignUpFormController> {
             ),
             IgnorePointer(
               child: Obx(() => AnimatedContainer(
-                    transform: Matrix4.translationValues(myDrawerController.xOffset.value, myDrawerController.yOffset.value * 1.5, 0)
-                      ..scale(myDrawerController.scaleFactor.value),
-                    duration: Duration(milliseconds: 250),
-                    decoration: BoxDecoration(
-                        // color: myDrawerController.backgroundColor.value,
-                        borderRadius: BorderRadius.circular(myDrawerController.isDrawerOpen.value ? 0 : 0)),
-                  )),
+                transform: Matrix4.translationValues(myDrawerController.xOffset.value, myDrawerController.yOffset.value * 1.5, 0)
+                  ..scale(myDrawerController.scaleFactor.value),
+                duration: Duration(milliseconds: 250),
+                decoration: BoxDecoration(
+                  // color: myDrawerController.backgroundColor.value,
+                    borderRadius: BorderRadius.circular(myDrawerController.isDrawerOpen.value ? 0 : 0)),
+              )),
             )
           ],
         ));
