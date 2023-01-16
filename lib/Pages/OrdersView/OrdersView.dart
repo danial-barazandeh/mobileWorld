@@ -29,7 +29,7 @@ import 'OrdersViewController.dart';
 class OrdersView extends GetView<OrdersViewController> {
 
   String getPrice(String data){
-    var nf = new NumberFormat.currency(name: 'IRR',symbol: "").format(int.parse(data.toString()));
+    var nf = new NumberFormat.currency(name: 'EUR',symbol: "€").format(int.parse(data.toString()));
     return nf.toString();
   }
 
@@ -56,6 +56,7 @@ class OrdersView extends GetView<OrdersViewController> {
           Container(
             margin: EdgeInsets.only(top: 35),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
                   icon: Icon(Icons.arrow_back, color: myColors.textColor),
@@ -64,7 +65,10 @@ class OrdersView extends GetView<OrdersViewController> {
                   },
                 ),
                 
-                Text(myStrings.ordersList)
+                Padding(
+                  padding: const EdgeInsets.only(right:16.0),
+                  child: Text(myStrings.ordersList),
+                )
               ],
             ),
           ),
@@ -97,7 +101,7 @@ class OrdersView extends GetView<OrdersViewController> {
                           ],
                         ),
                         margin: EdgeInsets.only(left: 16, right: 16, bottom: 16,top: 8),
-                        padding: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(16),
                         child: Column(
                           children: [
                             Row(
@@ -106,45 +110,44 @@ class OrdersView extends GetView<OrdersViewController> {
                               children: [
 
 
-                                Row(
-                                  children: [
-                                    Text(myStrings.productName + ": "),
-                                    Text(controller.ordersList[index].product.name),
-                                  ],
-                                ),
+
+                                Text(controller.ordersList[index].product.name,style: TextStyle(fontWeight: FontWeight.w900),),
+
 
 
                                 if(controller.ordersList[index].status=="waiting")
-                                IconButton(
-                                  alignment: Alignment.center,
-                                  icon: Icon(Icons.cancel, color: Colors.red,size: 15,),
-                                  onPressed: () {
-                                    controller.deleteOrder(controller.ordersList[index]);
-                                  },
-                                ),
+                                GestureDetector(
+                                    child: Text("Cancel order",style: TextStyle(color: Colors.red),),
+                                    onTap:(){
+                                      controller.deleteOrder(controller.ordersList[index]);
+                                    }
+                                )
                               ],
                             ),
 
-                            SizedBox(height: 8,),
+                            SizedBox(height: 32,),
 
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(myStrings.price + ": ",style: TextStyle(fontSize: 13),),
-                                    Text(getPrice(controller.ordersList[index].product.price),style: TextStyle(fontSize: 13),),
-                                  ],
-                                ),
+                            Padding(
+                              padding: const EdgeInsets.all(0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(myStrings.price + ": ",style: TextStyle(fontSize: 13),),
+                                      Text(getPrice(controller.ordersList[index].product.price),style: TextStyle(fontSize: 13),),
+                                    ],
+                                  ),
 
 
-                                Row(
-                                  children: [
-                                    Text(myStrings.salesPrice + ": ",style: TextStyle(fontSize: 13),),
-                                    Text(getPrice(controller.ordersList[index].product.salePrice),style: TextStyle(fontSize: 13),),
-                                  ],
-                                )
-                              ],
+                                  Row(
+                                    children: [
+                                      Text(myStrings.salesPrice + ": ",style: TextStyle(fontSize: 13),),
+                                      Text(getPrice(controller.ordersList[index].product.salePrice),style: TextStyle(fontSize: 13),),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
 
                             SizedBox(height: 8,),
@@ -153,6 +156,8 @@ class OrdersView extends GetView<OrdersViewController> {
 
                             if(controller.ordersList[index].status.toString()=="waiting")
                             Container(
+                              margin: EdgeInsets.all(16),
+                              padding: EdgeInsets.zero,
                               decoration: BoxDecoration(
                                 color: Colors.green,
                                 border: Border.all(color: Colors.transparent),
@@ -166,6 +171,8 @@ class OrdersView extends GetView<OrdersViewController> {
 
                             if(controller.ordersList[index].status.toString()=="done")
                               Container(
+                                margin: EdgeInsets.all(16),
+                                padding: EdgeInsets.zero,
                                 decoration: BoxDecoration(
                                   color: Colors.blue,
                                   border: Border.all(color: Colors.transparent),
@@ -180,6 +187,8 @@ class OrdersView extends GetView<OrdersViewController> {
 
                             if(controller.ordersList[index].status.toString()=="canceled")
                               Container(
+                                margin: EdgeInsets.all(16),
+                                padding: EdgeInsets.zero,
                                 decoration: BoxDecoration(
                                   color: Colors.red,
                                   border: Border.all(color: Colors.transparent),
@@ -194,6 +203,8 @@ class OrdersView extends GetView<OrdersViewController> {
 
                             if(controller.ordersList[index].status.toString()=="retrieved")
                               Container(
+                                margin: EdgeInsets.all(16),
+                                padding: EdgeInsets.zero,
                                 decoration: BoxDecoration(
                                   color: Colors.orange,
                                   border: Border.all(color: Colors.transparent),

@@ -159,7 +159,7 @@ class ProductWidget extends StatelessWidget {
                                 );
 
                               }else {
-                                var temp = await BackendServices.addProductOrder(product);
+                                var temp = await BackendServices.addOrder(product);
                                 try{
                                   OrdersViewController ordersViewController = Get.find<OrdersViewController>();
                                   ordersViewController.ordersList.value = temp;

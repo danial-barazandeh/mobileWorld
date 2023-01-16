@@ -174,7 +174,7 @@ class ProductWidgetMultilevel extends StatelessWidget {
                                             );
 
                                           }else {
-                                            var temp = await BackendServices.addProductOrder(products[index]);
+                                            var temp = await BackendServices.addOrder(products[index]);
                                             try{
                                               OrdersViewController ordersViewController = Get.find<OrdersViewController>();
                                               ordersViewController.ordersList.value = temp;

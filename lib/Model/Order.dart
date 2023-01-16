@@ -9,7 +9,7 @@ String orderToJson(Order data) => json.encode(data.toJson());
 class Order {
   Order({
     required this.id,
-    this.buyerId,
+    this.userId,
     this.status,
     this.type,
     required this.product,
@@ -17,7 +17,7 @@ class Order {
   });
 
   int id;
-  dynamic buyerId;
+  dynamic userId;
   dynamic status;
   dynamic type;
   Product product;
@@ -28,7 +28,7 @@ class Order {
 
   return Order(
       id: json["id"],
-      buyerId: json["buyer_id"].toString(),
+      userId: json["user_id"].toString(),
       status: json["status"].toString(),
       type: json["type"].toString(),
       product: temp
@@ -37,7 +37,7 @@ class Order {
   }
   Map<String, dynamic> toJson() => {
     "id": id,
-    "buyer_id": buyerId,
+    "userId": userId,
     "status": status,
     "type": type,
     "product": product

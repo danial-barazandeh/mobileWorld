@@ -279,7 +279,8 @@ class BackendServices {
 
   }
 
-  static Future<List<Order>> addProductOrder(Product product) async {
+  static Future<List<Order>> addOrder(Product product) async {
+    print("selam");
     var orderList = <Order>[];
 
     await GetStorage.init("userStorage");
@@ -287,9 +288,12 @@ class BackendServices {
     var data = await storage.read('user') ?? "empty";
     JmobUser user = JmobUser.fromJson(data);
 
+
+
     var token = user.token;
+    print(token);
     var response = await client.post(
-      Uri.parse('$domainBase/api/addProductOrder'),
+      Uri.parse('$domainBase/api/addOrder'),
       headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer $token'},
       body: jsonEncode(<String, dynamic>{
         'product_id': product.id,
@@ -318,12 +322,17 @@ class BackendServices {
   static Future<List<Order>> getOrders() async {
     var orderList = <Order>[];
 
+    print("token");
+
     await GetStorage.init("userStorage");
     var storage = GetStorage("userStorage");
     var data = await storage.read('user') ?? "empty";
     JmobUser user = JmobUser.fromJson(data);
 
     var token = user.token;
+
+    print(token);
+
     var response = await client.get(
       Uri.parse('$domainBase/api/getOrders'),
       headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer $token'},
@@ -335,8 +344,8 @@ class BackendServices {
 
 
     if (response.statusCode == 201 || response.statusCode == 200) {
-      var jsonArray = jsonDecode(response.body);
-      for(var json in jsonArray['orders']){
+      var jsonObject = jsonDecode(response.body);
+      for(var json in jsonObject['orders']){
         orderList.add(Order.fromJson(json));
       }
       return orderList;
