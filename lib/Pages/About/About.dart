@@ -61,21 +61,45 @@ class About extends GetView<AboutController> {
                         SizedBox(
                           height: myDrawerController.isDrawerOpen.value ? 10 : 30,
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                        Stack(
                           children: [
-                            myDrawerController.isDrawerOpen.value
-                                ? IconButton(
-                                    icon: Icon(Icons.arrow_back, color: myColors.textColor),
-                                    onPressed: () => myDrawerController.CloseDrawer(),
-                                  )
-                                : IconButton(
-                                    icon: Icon(Icons.menu, color: myColors.textColor),
-                                    onPressed: () => myDrawerController.OpenDrawer(context),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    myDrawerController.isDrawerOpen.value
+                                        ? Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      alignment: Alignment.centerRight,
+                                      child: IconButton(
+                                        icon: Icon(Icons.arrow_forward, color: myColors.textColor),
+                                        onPressed: () => myDrawerController.CloseDrawer(),
+                                      ),
+                                    )
+                                        : IconButton(
+                                      icon: Icon(Icons.menu, color: myColors.textColor),
+                                      onPressed: () => myDrawerController.OpenDrawer(context),
+                                    ),
+                                    !myDrawerController.isDrawerOpen.value
+                                        ? Text(
+                                      myStrings.about,
+                                      style: TextStyle(color: myColors.textColor),
+                                    ) : SizedBox(),
+                                  ],
+                                ),
+                                !myDrawerController.isDrawerOpen.value
+                                    ? Expanded(
+                                  child: Align(
+                                    alignment: Alignment.centerRight,
+                                    child: IconButton(
+                                      icon: Icon(Icons.search, color: myColors.textColor),
+                                      onPressed: () => Get.to(() => SearchPage(), binding: SearchPageBinding()),
+                                    ),
                                   ),
-                            Text(
-                              myStrings.about,
-                              style: TextStyle(color: myColors.textColor),
+                                ) : SizedBox(),
+                              ],
                             ),
                           ],
                         ),

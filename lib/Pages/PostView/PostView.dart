@@ -51,9 +51,17 @@ class PostView extends GetView<PostViewController> {
 
 
             flexibleSpace: FlexibleSpaceBar(
-              titlePadding: EdgeInsets.only(left:12,bottom: 12),
+              titlePadding: EdgeInsets.only(left:12,bottom: 16,right: 12),
               // centerTitle: true,
-              title: Text(controller.selectedPost.value.title),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                      controller.selectedPost.value.title,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
 
 
               background: CachedNetworkImage(
@@ -82,28 +90,35 @@ class PostView extends GetView<PostViewController> {
               [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: HtmlWidget(
-                      controller.selectedPost.value.content,
-                      customStylesBuilder: (element) {
-                        if (element.classes.contains('foo')) {
-                          return {'color': 'red'};
-                        }
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    child: Container(
+                      color: Colors.white,
+                      padding: EdgeInsets.all(8),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: HtmlWidget(
+                          controller.selectedPost.value.content,
+                          customStylesBuilder: (element) {
+                            if (element.classes.contains('foo')) {
+                              return {'color': 'red'};
+                            }
 
-                        return null;
-                      },
-                      customWidgetBuilder: (element) {
-                        if (element.attributes['foo'] == 'bar') {
-                          return SizedBox();
-                        }
+                            return null;
+                          },
+                          customWidgetBuilder: (element) {
+                            if (element.attributes['foo'] == 'bar') {
+                              return SizedBox();
+                            }
 
-                        return null;
-                      },
-                      onErrorBuilder: (context, element, error) => Text('$element error: $error'),
-                      onLoadingBuilder: (context, element, loadingProgress) => CircularProgressIndicator(),
-                      renderMode: RenderMode.column,
-                      textStyle: TextStyle(fontSize: 14,color: myColors.textColor.withOpacity(0.7)),
+                            return null;
+                          },
+                          onErrorBuilder: (context, element, error) => Text('$element error: $error'),
+                          onLoadingBuilder: (context, element, loadingProgress) => CircularProgressIndicator(),
+                          renderMode: RenderMode.column,
+                          textStyle: TextStyle(fontSize: 14,color: myColors.textColor.withOpacity(0.7)),
+                        ),
+                      ),
                     ),
                   ),
                 ),

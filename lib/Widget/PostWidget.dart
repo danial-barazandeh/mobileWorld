@@ -54,9 +54,9 @@ class PostWidget extends StatelessWidget {
             child: Container(
               width: MediaQuery.of(context).size.width*0.4,
               color: Colors.white,
-              height: MediaQuery.of(context).size.height*0.04,
+              height: MediaQuery.of(context).size.height*0.05,
               alignment: Alignment.center,
-              child: Text(post.title.toString(),style: TextStyle(fontSize: 12),)
+              child: Text(post.title.toString(),style: TextStyle(fontSize: 12),textAlign: TextAlign.center,)
             ),
           ),
         ],

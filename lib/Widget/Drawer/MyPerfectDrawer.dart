@@ -158,7 +158,7 @@ class MyPerfectDrawer extends GetView<MyDrawerController> {
               margin: EdgeInsets.only(top: 8, right: 0),
               alignment: Alignment.centerRight,
               decoration: BoxDecoration(
-                  color: controller.aboutColor.value,
+                  color: controller.exitColor.value,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(4),
                     topLeft: Radius.circular(4),
@@ -178,14 +178,14 @@ class MyPerfectDrawer extends GetView<MyDrawerController> {
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: Icon(
                       Icons.exit_to_app,
-                      color: controller.aboutTextColor.value,
+                      color: controller.exitTextColor.value,
                     ),
                   ),
                   title: Padding(
                     padding: const EdgeInsets.only(bottom: 9.0),
                     child: Text(
                       myStrings.exit,
-                      style: TextStyle(color: controller.aboutTextColor.value),
+                      style: TextStyle(color: controller.exitTextColor.value),
                     ),
                   ),
                 ),

@@ -23,6 +23,9 @@ class MyDrawerController extends GetxController{
   var aboutColor = Color.fromRGBO(255, 255, 255, 0).obs;
   var aboutTextColor = Color.fromRGBO(233,233,234, 1).obs;
 
+  var exitColor = Color.fromRGBO(255, 255, 255, 0).obs;
+  var exitTextColor = Color.fromRGBO(233,233,234, 1).obs;
+
 
   Color setColor = Colors.white;
   Color setBackground = myColors.coll;
