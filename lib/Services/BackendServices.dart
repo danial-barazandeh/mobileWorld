@@ -23,7 +23,7 @@ import 'MyColors.dart';
 import 'MyStrings.dart';
 
 class BackendServices {
-  static var domainBase = "http://brzdev.ir";
+  static var domainBase = "http://gabrielbeat.ir";
   static var myStrings = Get.find<MyStrings>();
   static var myColors = Get.find<MyColors>();
   static var client = http.Client();
